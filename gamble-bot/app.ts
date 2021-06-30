@@ -31,9 +31,9 @@ client.on('message', msg => {
     }
 });
 
-client.on('guildIntegrationsUpdate', (guild) => {
+client.on('guildCreate', (guild) => {
     currencyService.addGuild(guild);
-    console.log('guildIntegrationsUpdate');
+    console.log('Joined guild', guild.name);
 })
 
 client.login(process.env.BOT_TOKEN);

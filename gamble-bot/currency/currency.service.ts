@@ -65,7 +65,7 @@ export class CurrencyService {
         return Promise.all(promises)
     }
 
-    addGuild(guild: Guild) {
+    addGuild(guild: Guild): void {
         if (!this.guildCurrencies.get(guild.id)) {
             this.guildCurrencies.set(guild.id, new Map<string, number>());
         }
@@ -73,9 +73,12 @@ export class CurrencyService {
 
     getRewards(guild: Guild, member: GuildMember): number {
         const memberCurrencies = this.guildCurrencies.get(guild.id);
+        let currentValue = 0;
         if (memberCurrencies) {
-            return memberCurrencies.get(member.id) || 0;
+            currentValue = memberCurrencies.get(member.id) || 0;
+        } else {
+            this.addGuild(guild);
         }
-        return 0;
+        return currentValue;
     }
 };
