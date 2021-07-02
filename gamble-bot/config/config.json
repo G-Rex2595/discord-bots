@@ -1,3 +1,5 @@
 {
-    "storageLocation": "./storage/guild-data"
+    "storageLocation": "./storage/guild-data",
+    "sendStartupMessage": true,
+    "sendExitMessage": true
 }
